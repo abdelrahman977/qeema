@@ -1,6 +1,6 @@
 ## Dynamic Process Report
 
-This document provides details on SQL functions used for retrieving report statistics. Each function is executed using a `SELECT` query, with parameters allowing flexible filtering.
+This document provides details on SQL functions used for retrieving report statistics. Each function is executed using a `SELECT` query, with parameters allowing flexible filtering. **If any filter parameter is NULL, it will be completely ignored, as if it was not included in the query.**
 
 ---
 
@@ -33,7 +33,7 @@ SELECT * FROM report_flow.f_get_reports_count_by_status(
 
 ---
 
-### 2. f\_get\_reports\_count\_by\_month
+### 2. `f_get_reports_count_by_month`
 
 #### **Description:**
 
@@ -124,9 +124,9 @@ SELECT * FROM report_flow.f_get_reports_avg_response_time(
 
 | Column              | Data Type        |
 | ------------------- | ---------------- |
-| year                | INT              |
-| month               | INT              |
-| avg\_response\_time | DOUBLE PRECISION |
+| year               | INT              |
+| month              | INT              |
+| avg_response_time  | DOUBLE PRECISION |
 
 ---
 
@@ -158,4 +158,9 @@ SELECT * FROM report_flow.f_get_reports_percentage_sla(
 | ---------- | ---------------- |
 | sla        | TEXT             |
 | percentage | DOUBLE PRECISION |
+
+---
+
+### **Note:**
+- **If a parameter is NULL, it will be completely ignored**, meaning the function will behave as if that filter was never applied.
 
