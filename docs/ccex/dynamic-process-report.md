@@ -4,11 +4,11 @@ This document provides details on SQL functions used for retrieving report stati
 
 ---
 
-### 1. `f_get_reports_count_by_status`
+### 1. `f_get_requests_count_by_status`
 
 #### **Description:**
 
-Returns the count of reports grouped by status.
+Returns the count of requests grouped by status.
 
 #### **Parameters:**
 
@@ -18,7 +18,7 @@ Returns the count of reports grouped by status.
 #### **Execution Example:**
 
 ```sql
-SELECT * FROM report_flow.f_get_reports_count_by_status(
+SELECT * FROM report_flow.f_get_requests_count_by_status(
     '2024-01-01', -- DATE FROM 'YYYY-MM-DD'
     '2024-12-31'  -- DATE TO 'YYYY-MM-DD'
 );
@@ -33,11 +33,11 @@ SELECT * FROM report_flow.f_get_reports_count_by_status(
 
 ---
 
-### 2. `f_get_reports_count_by_month`
+### 2. `f_get_requests_count_by_month`
 
 #### **Description:**
 
-Returns the count of reports grouped by month.
+Returns the count of requests grouped by month.
 
 #### **Parameters:**
 
@@ -49,7 +49,7 @@ Returns the count of reports grouped by month.
 #### **Execution Example:**
 
 ```sql
-SELECT * FROM report_flow.f_get_reports_count_by_month(
+SELECT * FROM report_flow.f_get_requests_count_by_month(
     'category1,category2', -- category filter
     'status1,status2', -- status filter
     '2024-01-01', -- DATE FROM 'YYYY-MM-DD'
@@ -67,11 +67,11 @@ SELECT * FROM report_flow.f_get_reports_count_by_month(
 
 ---
 
-### 3. `f_get_reports_count_by_category`
+### 3. `f_get_requests_count_by_category`
 
 #### **Description:**
 
-Returns the count of reports grouped by category.
+Returns the count of requests grouped by category.
 
 #### **Parameters:**
 
@@ -82,7 +82,7 @@ Returns the count of reports grouped by category.
 #### **Execution Example:**
 
 ```sql
-SELECT * FROM report_flow.f_get_reports_count_by_category(
+SELECT * FROM report_flow.f_get_requests_count_by_category(
     'category1,category2', -- category filter
     '2024-01-01', -- DATE FROM 'YYYY-MM-DD'
     '2024-12-31'  -- DATE TO 'YYYY-MM-DD'
@@ -98,11 +98,11 @@ SELECT * FROM report_flow.f_get_reports_count_by_category(
 
 ---
 
-### 4. `f_get_reports_avg_response_time`
+### 4. `f_get_requests_avg_response_time`
 
 #### **Description:**
 
-Returns the average response time for reports, grouped by year and month.
+Returns the average response time for requests, grouped by year and month.
 
 #### **Parameters:**
 
@@ -113,7 +113,7 @@ Returns the average response time for reports, grouped by year and month.
 #### **Execution Example:**
 
 ```sql
-SELECT * FROM report_flow.f_get_reports_avg_response_time(
+SELECT * FROM report_flow.f_get_requests_avg_response_time(
     'category1,category2', -- category filter
     '2024-01-01', -- DATE FROM 'YYYY-MM-DD'
     '2024-12-31'  -- DATE TO 'YYYY-MM-DD'
@@ -130,11 +130,11 @@ SELECT * FROM report_flow.f_get_reports_avg_response_time(
 
 ---
 
-### 5. `f_get_reports_percentage_sla`
+### 5. `f_get_requests_percentage_sla`
 
 #### **Description:**
 
-Returns the percentage of reports classified as 'Within SLA' or 'Breached SLA'.
+Returns the percentage of requests classified as 'Within SLA' or 'Breached SLA'.
 
 #### **Parameters:**
 
@@ -145,7 +145,7 @@ Returns the percentage of reports classified as 'Within SLA' or 'Breached SLA'.
 #### **Execution Example:**
 
 ```sql
-SELECT * FROM report_flow.f_get_reports_percentage_sla(
+SELECT * FROM report_flow.f_get_requests_percentage_sla(
     'category1,category2', -- category filter
     '2024-01-01', -- DATE FROM 'YYYY-MM-DD'
     '2024-12-31'  -- DATE TO 'YYYY-MM-DD'
