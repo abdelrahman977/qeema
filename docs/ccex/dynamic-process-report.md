@@ -42,7 +42,7 @@ Returns the count of reports grouped by month.
 #### **Parameters:**
 
 - `chosen_category` (VARCHAR) – Category filter (nullable, supports comma-separated values, e.g., `'category1,category2'`)
-- `chosen_status` (VARCHAR) – Status filter (nullable, supports comma-separated values, e.g., 'status1,status2')
+- `chosen_status` (VARCHAR) – Status filter (nullable, supports comma-separated values, e.g., `'status1,status2'`)
 - `chosen_date_from` (DATE) – Start date (nullable, format: 'YYYY-MM-DD')
 - `chosen_date_to` (DATE) – End date (nullable, format: 'YYYY-MM-DD')
 
