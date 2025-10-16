@@ -1,4 +1,4 @@
-# Milestones Reporting Functions
+# Milestones KPIs Functions
 
 This document provides detailed descriptions for SQL functions under the `dt_milestone` schema.
 Each function can be executed using a `SELECT` query.
@@ -261,17 +261,6 @@ SELECT dt_milestone.f_dt_milestones_get_avg_units_progress(2025);
 ## Developer Notes
 
 * All functions are under schema: `dt_milestone`.
-* Use in backend API via:
-
-  ```sql
-  SELECT * FROM dt_milestone.<function_name>(...);
-  ```
 * For null-safe behavior:
 
   * Pass `NULL` to ignore a filter.
-  * All functions return `0` when data doesn’t exist for the selected filters.
-* Ensure indexes exist on:
-
-  * `kpi_progress (kpi_id, year, month)`
-  * `kpi (unit_id)`
-  * for optimal API latency.
