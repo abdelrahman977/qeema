@@ -212,9 +212,9 @@ Adds an “Overall” record (aggregating all dimensions) when `input_dimension`
 ```sql
 SELECT * FROM dt_milestone.f_dt_milestones_get_unit_progress_series(
     1,
-    2024,
+    2025,
     'Digital Experience & Impact',
-    'quarterly'
+    'monthly'
 );
 ```
 
@@ -264,3 +264,4 @@ SELECT dt_milestone.f_dt_milestones_get_avg_units_progress(2025);
 * For null-safe behavior:
 
   * Pass `NULL` to ignore a filter.
+
