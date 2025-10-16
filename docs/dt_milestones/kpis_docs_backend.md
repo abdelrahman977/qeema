@@ -16,10 +16,10 @@ Retrieves a list of KPIs for a given unit and dimension.
 
 ### **Parameters:**
 
-| Parameter         | Type    | Description                  |
-| ----------------- | ------- | ---------------------------- |
-| `input_unit_id`   | INT     | Unit filter (nullable).      |
-| `input_dimention` | VARCHAR | Dimension filter (nullable). |
+| Parameter         | Type    | Nullable | Description       |
+| ----------------- | ------- | -------- | ----------------- |
+| `input_unit_id`   | INT     | ✅        | Unit filter.      |
+| `input_dimention` | VARCHAR | ✅        | Dimension filter. |
 
 ### **Execution Example:**
 
@@ -48,12 +48,12 @@ Updates an existing KPI’s value for a given year and month in the `kpi_progres
 
 ### **Parameters:**
 
-| Parameter      | Type    | Description            |
-| -------------- | ------- | ---------------------- |
-| `input_kpi_id` | BIGINT  | KPI ID to update.      |
-| `input_year`   | INT     | Year of the record.    |
-| `input_month`  | INT     | Month of the record.   |
-| `input_value`  | NUMERIC | Updated numeric value. |
+| Parameter      | Type    | Nullable | Description            |
+| -------------- | ------- | -------- | ---------------------- |
+| `input_kpi_id` | BIGINT  | ❌        | KPI ID to update.      |
+| `input_year`   | INT     | ❌        | Year of the record.    |
+| `input_month`  | INT     | ❌        | Month of the record.   |
+| `input_value`  | NUMERIC | ❌        | Updated numeric value. |
 
 ### **Execution Example:**
 
@@ -83,12 +83,12 @@ When `quarterly`, the function automatically returns the **latest record within 
 
 ### **Parameters:**
 
-| Parameter         | Type    | Description                   |
-| ----------------- | ------- | ----------------------------- |
-| `input_unit_id`   | BIGINT  | Unit filter (nullable).       |
-| `input_kpi_id`    | BIGINT  | KPI filter (nullable).        |
-| `input_dimention` | VARCHAR | Dimension filter (nullable).  |
-| `input_grouping`  | VARCHAR | `'monthly'` or `'quarterly'`. |
+| Parameter         | Type    | Nullable | Description                   |
+| ----------------- | ------- | -------- | ----------------------------- |
+| `input_unit_id`   | BIGINT  | ✅        | Unit filter.                  |
+| `input_kpi_id`    | BIGINT  | ✅        | KPI filter.                   |
+| `input_dimention` | VARCHAR | ✅        | Dimension filter.             |
+| `input_grouping`  | VARCHAR | ✅        | `'monthly'` or `'quarterly'`. |
 
 ### **Execution Example:**
 
@@ -125,11 +125,11 @@ Fetches KPI attributes such as weight, baseline, ambition, and the most recent v
 
 ### **Parameters:**
 
-| Parameter         | Type    | Description                  |
-| ----------------- | ------- | ---------------------------- |
-| `input_unit_id`   | BIGINT  | Unit filter (nullable).      |
-| `input_kpi_id`    | BIGINT  | KPI filter (nullable).       |
-| `input_dimention` | VARCHAR | Dimension filter (nullable). |
+| Parameter         | Type    | Nullable | Description       |
+| ----------------- | ------- | -------- | ----------------- |
+| `input_unit_id`   | BIGINT  | ✅        | Unit filter.      |
+| `input_kpi_id`    | BIGINT  | ✅        | KPI filter.       |
+| `input_dimention` | VARCHAR | ✅        | Dimension filter. |
 
 ### **Execution Example:**
 
@@ -161,18 +161,13 @@ SELECT * FROM dt_milestone.f_dt_milestones_get_kpi_attributes(
 ### **Description:**
 
 Calculates the overall **Digital Index (DI)** progress for a unit and year by aggregating weighted KPI results.
-Weights by dimension:
-
-* Capability Building → 60%
-* Capability Utilization → 30%
-* Digital Experience & Impact → 10%
 
 ### **Parameters:**
 
-| Parameter       | Type   | Description             |
-| --------------- | ------ | ----------------------- |
-| `input_unit_id` | BIGINT | Unit filter (nullable). |
-| `input_year`    | INT    | Year filter (nullable). |
+| Parameter       | Type   | Nullable | Description  |
+| --------------- | ------ | -------- | ------------ |
+| `input_unit_id` | BIGINT | ✅        | Unit filter. |
+| `input_year`    | INT    | ✅        | Year filter. |
 
 ### **Execution Example:**
 
@@ -205,12 +200,12 @@ Adds an “Overall” record (aggregating all dimensions) when `input_dimension`
 
 ### **Parameters:**
 
-| Parameter          | Type    | Description                   |
-| ------------------ | ------- | ----------------------------- |
-| `input_unit_id`    | BIGINT  | Unit filter (nullable).       |
-| `input_year`       | INT     | Year filter (nullable).       |
-| `input_dimension`  | VARCHAR | Dimension filter (nullable).  |
-| `input_grouped_by` | VARCHAR | `'monthly'` or `'quarterly'`. |
+| Parameter          | Type    | Nullable | Description                   |
+| ------------------ | ------- | -------- | ----------------------------- |
+| `input_unit_id`    | BIGINT  | ✅        | Unit filter.                  |
+| `input_year`       | INT     | ✅        | Year filter.                  |
+| `input_dimension`  | VARCHAR | ✅        | Dimension filter.             |
+| `input_grouped_by` | VARCHAR | ✅        | `'monthly'` or `'quarterly'`. |
 
 ### **Execution Example:**
 
@@ -245,9 +240,9 @@ Computes the **average DI progress** across all units for a given year.
 
 ### **Parameters:**
 
-| Parameter    | Type | Description  |
-| ------------ | ---- | ------------ |
-| `input_year` | INT  | Year filter. |
+| Parameter    | Type | Nullable | Description  |
+| ------------ | ---- | -------- | ------------ |
+| `input_year` | INT  | ✅        | Year filter. |
 
 ### **Execution Example:**
 
