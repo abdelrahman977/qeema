@@ -70,7 +70,7 @@ SELECT * FROM dt_milestone.f_dt_milestones_update_kpi_value(
 
 | Column   | Type    | Description                                             |
 | -------- | ------- | ------------------------------------------------------- |
-| (result) | BOOLEAN | Returns `TRUE` if updated, `FALSE` if no rows affected. |
+| (result) | BIGINT | Returns the ID of the affected row in 'kpi_progress' table, raises error otherwise. |
 
 ---
 
@@ -264,3 +264,4 @@ SELECT dt_milestone.f_dt_milestones_get_avg_units_progress(2025);
 * For null-safe behavior:
 
   * Pass `NULL` to ignore a filter.
+
