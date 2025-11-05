@@ -153,6 +153,7 @@ SELECT * FROM dt_milestone.f_dt_milestones_get_kpi_attributes(
 | baseline      | NUMERIC | Baseline value.             |
 | target        | NUMERIC | Target value.               |
 | ambition      | NUMERIC | Ambition value.             |
+| direction      | SMALLINT | Direction value.             |
 
 ---
 
@@ -264,4 +265,5 @@ SELECT dt_milestone.f_dt_milestones_get_avg_units_progress(2025);
 * For null-safe behavior:
 
   * Pass `NULL` to ignore a filter.
+
 
