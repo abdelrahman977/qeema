@@ -276,15 +276,45 @@ Filters (`p_year`, `p_unit_id`, `p_dimension`) are optional — if `NULL`, they 
 
 | Parameter     | Type    | Nullable | Description                        |
 | ------------- | ------- | -------- | ---------------------------------- |
-| `p_year`      | INT     | ✅        | Year filter (`kpi_progress.year`)  |
-| `p_unit_id`   | BIGINT  | ✅        | Unit filter (`kpi.unit_id`)        |
-| `p_dimension` | VARCHAR | ✅        | Dimension filter (`kpi.dimension`) |
-
+| `p_year`      | INT     | ✅        | Year filter |
+| `p_unit_id`   | BIGINT  | ✅        | Unit filter         |
+| `p_dimension` | VARCHAR | ✅        | Dimension filter |
 ### **Execution Examples:**
 
 ```sql
 SELECT * FROM dt_milestone.f_kpi_overview(2025, 1, 'Digital Experience & Impact');
 ```
+
+### **Return Data Types:**
+
+| Column      | Type      | Description                  |
+| ----------- | --------- | ---------------------------- |
+| name        | VARCHAR   | KPI name.                    |
+| dimension   | VARCHAR   | KPI dimension.               |
+| weight      | NUMERIC   | Weight value.                |
+| baseline    | NUMERIC   | Baseline value.              |
+| target      | NUMERIC   | Target value.                |
+| ambition    | NUMERIC   | Ambition value.              |
+| formula     | VARCHAR   | KPI formula.                 |
+| created_by  | VARCHAR   | Created by.                  |
+| create_date | TIMESTAMP | Creation date.               |
+| updated_by  | VARCHAR   | Last updated by.             |
+| update_date | TIMESTAMP | Last update timestamp.       |
+| unit_name   | VARCHAR   | Unit name from `unit` table. |
+| direction   | SMALLINT  | Direction of improvement.    |
+| year        | INT       | Year of the progress.        |
+| jan         | NUMERIC   | January value.               |
+| feb         | NUMERIC   | February value.              |
+| mar         | NUMERIC   | March value.                 |
+| apr         | NUMERIC   | April value.                 |
+| may         | NUMERIC   | May value.                   |
+| jun         | NUMERIC   | June value.                  |
+| jul         | NUMERIC   | July value.                  |
+| aug         | NUMERIC   | August value.                |
+| sep         | NUMERIC   | September value.             |
+| oct         | NUMERIC   | October value.               |
+| nov         | NUMERIC   | November value.              |
+| dec         | NUMERIC   | December value.              |
 
 ---
 
@@ -294,6 +324,7 @@ SELECT * FROM dt_milestone.f_kpi_overview(2025, 1, 'Digital Experience & Impact'
 * For null-safe behavior:
 
   * Pass `NULL` to ignore a filter.
+
 
 
 
