@@ -259,11 +259,41 @@ SELECT dt_milestone.f_dt_milestones_get_avg_units_progress(2025);
 
 ---
 
+## 8. `f_kpi_overview`
+
+### **Description:**
+
+Returns a unified KPI overview matrix with:
+
+* All KPI attributes (excluding the `id` column)
+* `unit_name` instead of `unit_id`
+* `year` from `kpi_progress`
+* Monthly values `jan`…`dec` dynamically pivoted
+
+Filters (`p_year`, `p_unit_id`, `p_dimension`) are optional — if `NULL`, they are ignored.
+
+### **Parameters:**
+
+| Parameter     | Type    | Nullable | Description                        |
+| ------------- | ------- | -------- | ---------------------------------- |
+| `p_year`      | INT     | ✅        | Year filter (`kpi_progress.year`)  |
+| `p_unit_id`   | BIGINT  | ✅        | Unit filter (`kpi.unit_id`)        |
+| `p_dimension` | VARCHAR | ✅        | Dimension filter (`kpi.dimension`) |
+
+### **Execution Examples:**
+
+```sql
+SELECT * FROM dt_milestone.f_kpi_overview(2025, 1, 'Digital Experience & Impact');
+```
+
+---
+
 ## Developer Notes
 
 * All functions are under schema: `dt_milestone`.
 * For null-safe behavior:
 
   * Pass `NULL` to ignore a filter.
+
 
 
