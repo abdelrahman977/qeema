@@ -318,6 +318,53 @@ SELECT * FROM dt_milestone.f_kpi_overview(2025, 1, 'Digital Experience & Impact'
 
 ---
 
+## 9. `f_dt_milestones_get_kpi_dimensions`
+
+### **Description**
+
+Returns KPI dimensions from the `kpi` table joined with `kpi_progress`.
+Both filters (`p_year`, `p_unit_id`) are optional — if a parameter is `NULL`, that filter is ignored.
+
+This function provides a flexible way to fetch KPI dimensions for any year, any unit, or all units/years.
+
+---
+
+### **Parameters**
+
+| Parameter   | Type | Nullable | Description                       |
+| ----------- | ---- | -------- | --------------------------------- |
+| `p_year`    | INT  | ✅        | Year filter (from `kpi_progress`) |
+| `p_unit_id` | INT  | ✅        | Unit filter (from `kpi.unit_id`)  |
+
+---
+
+### **Execution Examples**
+
+```sql
+-- Apply both filters
+SELECT * FROM dt_milestone.f_get_kpi_dimensions(2025, 2);
+
+-- Only filter by unit
+SELECT * FROM dt_milestone.f_get_kpi_dimensions(NULL, 2);
+
+-- Only filter by year
+SELECT * FROM dt_milestone.f_get_kpi_dimensions(2025, NULL);
+
+-- No filters (return all dimensions)
+SELECT * FROM dt_milestone.f_get_kpi_dimensions(NULL, NULL);
+```
+
+---
+
+### **Return Data Types**
+
+| Column    | Type | Description                   |
+| --------- | ---- | ----------------------------- |
+| dimension | VARCHAR | The KPI dimension from `kpi`. |
+
+---
+
+
 ## Developer Notes
 
 * All functions are under schema: `dt_milestone`.
