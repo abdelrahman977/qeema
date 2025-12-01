@@ -50,7 +50,7 @@ SELECT * FROM qbr_dashboard.executive_summary_get_agile_maturity_index(
 
 ---
 
-# 2. `get_executive_summary_overall_maturity_index`
+# 2. `executive_summary_overall_maturity_index`
 
 ## **Description**
 
@@ -66,7 +66,7 @@ Returns the quarterly overall maturity index with calculated `progress_to_target
 ## **Execution Example**
 
 ```sql
-SELECT * FROM qbr_dashboard.get_executive_summary_overall_maturity_index(
+SELECT * FROM qbr_dashboard.executive_summary_get_overall_maturity_index(
     2025,
     'Q1'
 );
@@ -180,4 +180,5 @@ SELECT * FROM qbr_dashboard.executive_summary_get_performance_heatmap_squads(5);
 ---
 
 ## Developer Notes
+
 
