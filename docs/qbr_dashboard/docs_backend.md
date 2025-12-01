@@ -6,7 +6,7 @@ This document provides detailed descriptions for SQL functions under the `qbr_da
 
 ---
 
-# 1. `executive_summary_agile_maturity_index`
+# 1. `executive_summary_get_agile_maturity_index`
 
 ## **Description**
 
@@ -50,7 +50,7 @@ SELECT * FROM qbr_dashboard.executive_summary_get_agile_maturity_index(
 
 ---
 
-# 2. `executive_summary_overall_maturity_index`
+# 2. `executive_summary_get_overall_maturity_index`
 
 ## **Description**
 
@@ -96,8 +96,16 @@ SELECT * FROM qbr_dashboard.executive_summary_get_overall_maturity_index(
 
 ## **Description**
 
-Retrieves heatmap **metadata only** (LOB, tribe, year, quarter, total_tribe).
-All dimension values now live inside the Squad table and are fetched by the squads function.
+Retrieves heatmap records exactly as stored in the database, including:
+
+* LOB
+* Tribe name
+* Year
+* Quarter
+* The 5 total dimension values (`strategy_total`, `structure_total`, `processes_total`, `people_total`, `technology_total`)
+* `total_tribe`
+
+This function **does not calculate values** from squads. All totals are taken directly from the heatmap table.
 
 ## **Parameters**
 
@@ -121,35 +129,30 @@ SELECT * FROM qbr_dashboard.executive_summary_get_performance_heatmap(
 
 ## **Return Data Types**
 
-| Column      | Type      | Description             |
-| ----------- | --------- | ----------------------- |
-| id          | BIGINT    | Heatmap record ID.      |
-| lob         | TEXT      | Line of Business.       |
-| tribe_name  | TEXT      | Tribe name.             |
-| year        | INT       | Record year.            |
-| quarter     | TEXT      | Record quarter.         |
-| total_tribe | NUMERIC   | Business-provided total |
-| created_at  | TIMESTAMP | Creation timestamp.     |
-| updated_at  | TIMESTAMP | Last update timestamp.  |
+| Column           | Type      | Description                    |
+| ---------------- | --------- | ------------------------------ |
+| id               | BIGINT    | Heatmap record ID.             |
+| lob              | TEXT      | Line of Business.              |
+| tribe_name       | TEXT      | Tribe name.                    |
+| year             | INT       | Record year.                   |
+| quarter          | TEXT      | Record quarter.                |
+| strategy_total   | NUMERIC   | Stored radar total.            |
+| structure_total  | NUMERIC   | Stored radar total.            |
+| processes_total  | NUMERIC   | Stored radar total.            |
+| people_total     | NUMERIC   | Stored radar total.            |
+| technology_total | NUMERIC   | Stored radar total.            |
+| total_tribe      | NUMERIC   | Business-provided total value. |
+| created_at       | TIMESTAMP | Creation timestamp.            |
+| updated_at       | TIMESTAMP | Last update timestamp.         |
 
 ---
 
-# 4. `executive_summary_get_performance_heatmap_squads` `executive_summary_get_performance_heatmap_squads`
-
-## **Description**
-
-Returns individual squad maturity scores linked to heatmap records.
-
-## **Parameters**
-
-| Parameter      | Type   | Nullable | Description                                                  |
-| -------------- | ------ | -------- | ------------------------------------------------------------ |
-| `p_heatmap_id` | BIGINT | ✅        | Retur# 4. `executive_summary_get_performance_heatmap_squads` |
+# 4. `executive_summary_get_performance_heatmap_squads`
 
 ## **Description**
 
 Returns all squad-level maturity scores belonging to a specific heatmap.
-Each squad contains the full 5-dimension maturity breakdown + total average.
+Each squad contains its full 5-dimension maturity breakdown plus a `total_average`.
 
 ## **Parameters**
 
@@ -170,15 +173,16 @@ SELECT * FROM qbr_dashboard.executive_summary_get_performance_heatmap_squads(5);
 | id            | BIGINT  | Squad record ID.                |
 | heatmap_id    | BIGINT  | FK to heatmap table.            |
 | squad_name    | TEXT    | Name of squad.                  |
-| strategy      | NUMERIC | Strategy score.                 |
-| structure     | NUMERIC | Structure score.                |
-| processes     | NUMERIC | Processes score.                |
-| people        | NUMERIC | People score.                   |
-| technology    | NUMERIC | Technology score.               |
+| strategy      | NUMERIC | Squad strategy score.           |
+| structure     | NUMERIC | Squad structure score.          |
+| processes     | NUMERIC | Squad processes score.          |
+| people        | NUMERIC | Squad people score.             |
+| technology    | NUMERIC | Squad technology score.         |
 | total_average | NUMERIC | Average across the 5 dimensions |
 
 ---
 
 ## Developer Notes
 
-
+* All functions reside under `qbr_dashboard`.
+* Null parameters skip filtering.
