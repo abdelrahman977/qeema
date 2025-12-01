@@ -6,7 +6,7 @@ This document provides detailed descriptions for SQL functions under the `qbr_da
 
 ---
 
-# 1. `get_executive_summary_agile_maturity_index`
+# 1. `executive_summary_agile_maturity_index`
 
 ## **Description**
 
@@ -23,7 +23,7 @@ Retrieves Agile Maturity Index records, including 5-dimension radar values, high
 ## **Execution Example**
 
 ```sql
-SELECT * FROM qbr_dashboard.get_executive_summary_agile_maturity_index(
+SELECT * FROM qbr_dashboard.executive_summary_get_agile_maturity_index(
     2024,
     'Q1',
     'EBU'
@@ -180,3 +180,4 @@ SELECT * FROM qbr_dashboard.executive_summary_get_performance_heatmap_squads(5);
 ---
 
 ## Developer Notes
+
