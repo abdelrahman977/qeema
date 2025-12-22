@@ -50,10 +50,18 @@ This section explains **all supported context parameters**, their purpose, and w
 
 #### Important Notes
 
-`dashboard_name` controls which table is updated:
+* `dashboard_name` controls which table is updated:
 
-- `overall_maturity_index` → `qbr_dashboard.executive_summary_overall_maturity_index`
-- `executive_summary_performance_heatmap` → `qbr_dashboard.executive_summary_performance_heatmap`
-- `executive_summary_performance_heatmap_squads` → `qbr_dashboard.executive_summary_performance_heatmap_squads`
+  * `overall_maturity_index` → `qbr_dashboard.executive_summary_overall_maturity_index`
+  * `executive_summary_performance_heatmap` → `qbr_dashboard.executive_summary_performance_heatmap`
+  * `executive_summary_performance_heatmap_squads` → `qbr_dashboard.executive_summary_performance_heatmap_squads`
 
-> **Note:** `heatmap_id` **must reference an existing ID** in `qbr_dashboard.executive_summary_performance_heatmap`.
+* `heatmap_id` **must reference an existing ID** in `qbr_dashboard.executive_summary_performance_heatmap`.
+
+* **Input CSV files are read from one of the following directories** (depending on environment and execution setup):
+
+  * `/data/cem_eye/ceo_dashboard/QBR_Dashboards/actual_data`
+  * `/data/cem_eye/ceo_dashboard/QBR_Dashboards/talend_jobs/QBR_Dashboards_Automation/QBR_Dashboards_Automation_Job/actual_data/`
+
+  Ensure that the value passed in `file_name` exists in the appropriate directory before executing the job.
+
