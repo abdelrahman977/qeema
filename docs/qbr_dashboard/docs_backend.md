@@ -43,6 +43,7 @@ SELECT * FROM qbr_dashboard.executive_summary_get_agile_maturity_index(
 | processes      | NUMERIC   | Radar score.           |
 | people         | NUMERIC   | Radar score.           |
 | technology     | NUMERIC   | Radar score.           |
+| title_key_highlights | TEXT      | Key highlights title. |
 | key_highlights | TEXT      | Long descriptive text. |
 | img_path       | TEXT      | Image or icon path.    |
 | created_at     | TIMESTAMP | Record creation time.  |
@@ -186,3 +187,4 @@ SELECT * FROM qbr_dashboard.executive_summary_get_performance_heatmap_squads(5);
 
 * All functions reside under `qbr_dashboard`.
 * Null parameters skip filtering.
+
