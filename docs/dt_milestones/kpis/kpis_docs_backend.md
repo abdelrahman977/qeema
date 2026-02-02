@@ -364,6 +364,119 @@ SELECT * FROM dt_milestone.f_get_kpi_dimensions(NULL, NULL);
 
 ---
 
+## 10. `f_dt_milestones_get_kpi_milestones`
+
+### **Description:**
+
+Retrieves **milestones of specific kpi** , optionally filtered by year.
+
+
+⚙️ **Null-Safe Filtering**
+If any parameter is `NULL`, its filter is ignored.
+
+---
+
+### **Parameters:**
+
+| Parameter    | Type   | Nullable | Description                    |
+| ------------ | ------ | -------- | ------------------------------ |
+| `kpi_id_arg` | BIGINT | ✅        | KPI identifier filter.         |
+| `year_arg`   | INT    | ✅        | Filter by milestone start year |
+
+---
+
+### **Execution Example:**
+
+```sql
+SELECT *
+FROM dt_milestone.f_dt_milestones_get_kpi_milestones(
+    1,
+    NULL
+);
+```
+
+---
+
+### **Return Data Types:**
+
+| Column         | Type    | Description                           |
+| -------------- | ------- | ------------------------------------- |
+| start_dt       | DATE    | Milestone start date.                 |
+| end_dt         | DATE    | Milestone end date.                   |
+| year_num       | INTEGER | Calendar year (from lookup table).    |
+| quarter_name   | TEXT    | Quarter name (e.g., `Q1`).            |
+| month_num      | INTEGER | Calendar month number (1–12).         |
+| work_stream    | TEXT    | Work stream name.                     |
+| activity_name  | TEXT    | Activity name.                        |
+| milestone_name | TEXT    | Milestone name.                       |
+| team_name      | TEXT    | Team responsible for milestone.       |
+| status         | TEXT    | Milestone status (e.g., `Completed`). |
+
+---
+
+## 11. `f_dt_milestones_kpi_completion`
+
+### **Description:**
+
+Calculates **completion statistics** for milestones associated with a KPI.
+
+The function returns:
+
+* Total milestone count
+* Completed milestone count
+* Completion ratio (`completed / total`)
+
+⚙️ **Null-Safe Filtering**
+If a parameter is `NULL`, its filter is ignored.
+
+---
+
+### **Parameters:**
+
+| Parameter    | Type   | Nullable | Description                    |
+| ------------ | ------ | -------- | ------------------------------ |
+| `kpi_id_arg` | BIGINT | ✅        | KPI identifier filter.         |
+| `year_arg`   | INT    | ✅        | Filter by milestone start year |
+
+---
+
+### **Execution Example:**
+
+```sql
+SELECT *
+FROM dt_milestone.f_dt_milestones_kpi_completion(
+    1,
+    NULL
+);
+```
+
+---
+
+### **Return Data Types:**
+
+| Column           | Type    | Description                                          |
+| ---------------- | ------- | ---------------------------------------------------- |
+| completed_count  | BIGINT  | Number of milestones with status = `Completed`.      |
+| total_count      | BIGINT  | Total number of milestones.                          |
+| completion_ratio | NUMERIC | Completion ratio (0–1), rounded to 4 decimal places. |
+
+---
+
+## Developer Notes (Extended)
+
+* All functions are under schema: `dt_milestone`
+* Completion logic is based on:
+
+  ```sql
+  status = 'Completed'
+  ```
+* Completion ratio safely handles zero milestones (returns `0`)
+* Year filtering is based on:
+
+  ```sql
+  EXTRACT(YEAR FROM milestone.start_date)
+  ```
+
 
 ## Developer Notes
 
