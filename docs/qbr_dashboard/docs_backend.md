@@ -183,8 +183,107 @@ SELECT * FROM qbr_dashboard.executive_summary_get_performance_heatmap_squads(5);
 
 ---
 
+# 5. `executive_summary_get_distinct_tribes`
+
+## **Description**
+
+Returns a distinct list of tribe names for a given **Line of Business (LOB)**.
+Optional filters for **year** and **quarter** may be applied.
+
+This function is typically used to populate **tribe selectors** before loading heatmap or squad data.
+
+## **Parameters**
+
+| Parameter   | Type | Nullable | Description                              |
+| ----------- | ---- | -------- | ---------------------------------------- |
+| `p_lob`     | TEXT | ❌        | Line of Business (required).             |
+| `p_year`    | INT  | ✅        | Filter by year (optional).               |
+| `p_quarter` | TEXT | ✅        | Filter by quarter (`Q1`–`Q4`, optional). |
+
+## **Execution Example**
+
+```sql
+SELECT *
+FROM qbr_dashboard.executive_summary_get_distinct_tribes(
+    'CBU',
+    2025,
+    'Q4'
+);
+```
+
+## **Return Data Types**
+
+| Column     | Type | Description         |
+| ---------- | ---- | ------------------- |
+| tribe_name | TEXT | Distinct tribe name |
+
+---
+
+# 6. `executive_summary_get_performance_heatmap_squads`
+
+## **Description**
+
+Returns squad-level maturity scores associated with performance heatmaps.
+
+The function supports **two operating modes**:
+
+### 1️⃣ Heatmap-driven mode
+
+If `p_heatmap_id` is provided, the function returns **only squads belonging to that heatmap**.
+In this case, `year` and `quarter` parameters are **ignored**.
+
+### 2️⃣ Time-driven mode
+
+If `p_heatmap_id` is `NULL`, squads are returned based on the **year** and **quarter** of their parent heatmap.
+Both parameters are optional.
+
+## **Parameters**
+
+| Parameter      | Type   | Nullable | Description                                                          |
+| -------------- | ------ | -------- | -------------------------------------------------------------------- |
+| `p_heatmap_id` | BIGINT | ✅        | Heatmap identifier (priority filter).                                |
+| `p_year`       | INT    | ✅        | Parent heatmap year filter (used only if `p_heatmap_id` is NULL).    |
+| `p_quarter`    | TEXT   | ✅        | Parent heatmap quarter filter (used only if `p_heatmap_id` is NULL). |
+
+## **Execution Examples**
+
+### Heatmap-based query
+
+```sql
+SELECT *
+FROM qbr_dashboard.executive_summary_get_performance_heatmap_squads(5);
+```
+
+### Time-based query
+
+```sql
+SELECT *
+FROM qbr_dashboard.executive_summary_get_performance_heatmap_squads(
+    NULL,
+    2025,
+    'Q4'
+);
+```
+
+## **Return Data Types**
+
+| Column        | Type    | Description                               |
+| ------------- | ------- | ----------------------------------------- |
+| id            | BIGINT  | Squad record ID.                          |
+| heatmap_id    | BIGINT  | Foreign key to heatmap table.             |
+| squad_name    | TEXT    | Name of squad.                            |
+| strategy      | NUMERIC | Squad strategy maturity score.            |
+| structure     | NUMERIC | Squad structure maturity score.           |
+| processes     | NUMERIC | Squad processes maturity score.           |
+| people        | NUMERIC | Squad people maturity score.              |
+| technology    | NUMERIC | Squad technology maturity score.          |
+| total_average | NUMERIC | Average score across the five dimensions. |
+
+---
+
 ## Developer Notes
 
 * All functions reside under `qbr_dashboard`.
 * Null parameters skip filtering.
+
 
