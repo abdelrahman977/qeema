@@ -14,7 +14,8 @@ This document describes how to execute **QBR Dashboard upload jobs** into the da
 --context_param original_file_name=<CSV_ORIGINAL_FILE_NAME> \
 --context_param file_name=<CSV_FILE_NAME> \
 --context_param dashboard_name=<DASHBOARD_NAME> \
---context_param heatmap_id=<HEATMAP_ID>
+--context_param heatmap_squad_year=<HEATMAP_SQUAD_YEAR> \
+--context_param heatmap_squad_quarter=<HEATMAP_SQUAD_QUARTER>
 
 ```
 
@@ -28,7 +29,9 @@ This document describes how to execute **QBR Dashboard upload jobs** into the da
 --context_param original_file_name=<CSV_ORIGINAL_FILE_NAME> \
 --context_param file_name=<CSV_FILE_NAME> \
 --context_param dashboard_name=<DASHBOARD_NAME> \
---context_param heatmap_id=<HEATMAP_ID>
+--context_param heatmap_squad_year=<HEATMAP_SQUAD_YEAR> \
+--context_param heatmap_squad_quarter=<HEATMAP_SQUAD_QUARTER>
+
 ```
 
 ---
@@ -44,7 +47,8 @@ This section explains **all supported context parameters**, their purpose, and w
 | `original_file_name` | ✅ Yes          | Original uploaded file name (kept for traceability and audit purposes).       |
 | `file_name`          | ✅ Yes          | Actual CSV file name to be processed by the job.                       |
 | `dashboard_name`     | ✅ Yes          | Identifies which dashboard/table the data will be loaded into. Values are `overall_maturity_index`, `executive_summary_performance_heatmap` and `executive_summary_performance_heatmap_squads`            |
-| `heatmap_id`         | ⚠️ Conditional | Required **only** when passed `dashboard_name` is `executive_summary_performance_heatmap_squads`  |
+| `heatmap_squad_year`         | ⚠️ Conditional | Required **only** when passed `dashboard_name` is `executive_summary_performance_heatmap_squads`  |
+| `heatmap_squad_quarter`         | ⚠️ Conditional | Required **only** when passed `dashboard_name` is `executive_summary_performance_heatmap_squads`  |
 
 ---
 
