@@ -225,41 +225,22 @@ FROM qbr_dashboard.executive_summary_get_distinct_tribes(
 
 Returns squad-level maturity scores associated with performance heatmaps.
 
-The function supports **two operating modes**:
-
-### 1️⃣ Heatmap-driven mode
-
-If `p_heatmap_id` is provided, the function returns **only squads belonging to that heatmap**.
-In this case, `year` and `quarter` parameters are **ignored**.
-
-### 2️⃣ Time-driven mode
-
-If `p_heatmap_id` is `NULL`, squads are returned based on the **year** and **quarter** of their parent heatmap.
-Both parameters are optional.
-
 ## **Parameters**
 
 | Parameter      | Type   | Nullable | Description                                                          |
 | -------------- | ------ | -------- | -------------------------------------------------------------------- |
-| `p_heatmap_id` | BIGINT | ✅        | Heatmap identifier (priority filter).                                |
-| `p_year`       | INT    | ✅        | Parent heatmap year filter (used only if `p_heatmap_id` is NULL).    |
-| `p_quarter`    | TEXT   | ✅        | Parent heatmap quarter filter (used only if `p_heatmap_id` is NULL). |
+| `p_lob` | TEXT | ✅        | Line of Business (optional).                                |
+| `p_tribe_name` | TEXT | ✅        | Tribe Name (optional).                                |
+| `p_year`       | INT    | ✅        | Parent heatmap year filter (optional).    |
+| `p_quarter`    | TEXT   | ✅        | Parent heatmap quarter filter (optional). |
 
 ## **Execution Examples**
-
-### Heatmap-based query
-
-```sql
-SELECT *
-FROM qbr_dashboard.executive_summary_get_performance_heatmap_squads(5);
-```
-
-### Time-based query
 
 ```sql
 SELECT *
 FROM qbr_dashboard.executive_summary_get_performance_heatmap_squads(
-    NULL,
+    'CBU',
+    'Fixed',
     2025,
     'Q4'
 );
