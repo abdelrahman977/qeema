@@ -153,6 +153,7 @@ SELECT * FROM dt_milestone.f_dt_milestones_get_kpi_attributes(
 | baseline      | NUMERIC | Baseline value.             |
 | target        | NUMERIC | Target value.               |
 | ambition      | NUMERIC | Ambition value.             |
+| formula      | VARCHAR | KPI formula.             |
 | direction      | SMALLINT | Direction value.             |
 
 ---
@@ -484,6 +485,7 @@ FROM dt_milestone.f_dt_milestones_kpi_completion(
 * For null-safe behavior:
 
   * Pass `NULL` to ignore a filter.
+
 
 
 
