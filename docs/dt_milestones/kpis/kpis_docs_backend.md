@@ -316,7 +316,9 @@ SELECT * FROM dt_milestone.f_kpi_overview(2025, 1, 'Digital Experience & Impact'
 | oct         | NUMERIC   | October value.               |
 | nov         | NUMERIC   | November value.              |
 | dec         | NUMERIC   | December value.              |
-
+| completed_count         | NUMERIC   | Completed milestones counts related to the kpi.         |
+| total_count         | NUMERIC   | All milestones counts related to the kpi.              |
+| completion_ratio       | NUMERIC   | completed_count / total_count          |
 ---
 
 ## 9. `f_dt_milestones_get_kpi_dimensions`
@@ -485,6 +487,7 @@ FROM dt_milestone.f_dt_milestones_kpi_completion(
 * For null-safe behavior:
 
   * Pass `NULL` to ignore a filter.
+
 
 
 
